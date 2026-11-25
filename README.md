@@ -2,7 +2,8 @@
 
 **Modern corporate website for LOYDL Unternehmensberatung**
 
-🌐 **Live Site:** https://loydl.ch (coming soon)
+🌐 **Vorschau:** https://loydl-website-haraldloydlloydlchs-projects.vercel.app (nur mit Vercel-Login)
+🌐 **loydl.ch:** zeigt noch die alte WordPress-Site (Hostpoint)
 
 ---
 
@@ -11,7 +12,7 @@
 Corporate website showcasing three service areas:
 1. **IT Consulting & Training** - Business Analysis, Domain Modelling, IT Architecture
 2. **Business Process Automation** - Camunda BPM, Workflow Automation
-3. **AI Communication Solutions** - fluxdeck.io KI-Telefonie Platform
+3. **AI Agent Solutions** - KI-Agenten, Voice Agents (fluxdeck.io)
 
 ---
 
@@ -40,9 +41,10 @@ loydl-website/
 ├── index.html              # Homepage (Hero, Services Overview, References)
 ├── services.html           # Detailed service descriptions
 ├── ai-solutions.html       # fluxdeck.io AI Communication Solutions
+├── about.html              # Über mich
 ├── contact.html            # Contact form & info
-├── impressum.html          # Legal notice (TODO)
-├── datenschutz.html        # Privacy policy (TODO)
+├── impressum.html          # Impressum
+├── datenschutz.html        # Datenschutzerklärung
 ├── assets/
 │   ├── images/            # Logos, photos, graphics
 │   └── videos/            # Optional video content
@@ -136,18 +138,9 @@ vercel --prod
 
 ## 📝 Content Updates
 
-### Update Contact Form
+### Contact Form
 
-Replace Formspree Form ID in `contact.html`:
-```html
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-```
-
-Get your Form ID:
-1. Sign up at https://formspree.io
-2. Create new form
-3. Copy form ID
-4. Replace `YOUR_FORM_ID` in contact.html
+`contact.html` sendet an Formspree, Form-ID `xwprrgjl`.
 
 ### Add Images
 
@@ -173,13 +166,14 @@ Find and replace in all HTML files:
 
 ## 🎯 Next Steps (TODO)
 
-- [ ] Add real contact form ID (Formspree)
-- [ ] Create `impressum.html` (legal notice)
-- [ ] Create `datenschutz.html` (privacy policy)
+- [x] Add real contact form ID (Formspree)
+- [x] Create `impressum.html` (legal notice)
+- [x] Create `datenschutz.html` (privacy policy)
+- [x] Mobile-Menü (Burger) auf allen Seiten
 - [ ] Add company logo to `assets/images/`
 - [ ] Optional: Add team photos
 - [ ] Optional: Add project screenshots
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel (Projekt `loydl-website`, seit 25.11.2026)
 - [ ] Configure custom domain `loydl.ch`
 - [ ] Set up Vercel Analytics (optional, free tier available)
 
@@ -210,7 +204,7 @@ Before going live:
 
 ## 📄 License
 
-© 2025 LOYDL Unternehmensberatung. All rights reserved.
+© 2026 LOYDL Unternehmensberatung. All rights reserved.
 
 ---
 

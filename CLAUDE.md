@@ -34,32 +34,31 @@ python3 -m http.server 8000
 
 ## Deployment
 
-**Vercel CLI**:
-```bash
-vercel --prod
-```
-
-**Vercel UI**: Push to GitHub, import at vercel.com/new
-- Framework Preset: Other
-- Build Command: (leave empty)
-- Output Directory: `.` or (leave empty)
-
-**Custom Domain**: loydl.ch (configured in Vercel dashboard)
+- **Vercel-Projekt:** `loydl-website` im Team `haraldloydlloydlchs-projects`, verbunden mit `github.com/hloydl/loydl-website` (seit 25.11.2026).
+- **Jeder Push nach `main`** löst ein Production-Deployment aus.
+- **Vorschau:** https://loydl-website-haraldloydlloydlchs-projects.vercel.app — nur mit Vercel-Login sichtbar (Deployment Protection).
+- **Kein öffentlicher `.vercel.app`-Alias:** `loydl-website.vercel.app` wurde am 25.11.2026 aus dem Projekt entfernt, weil die Vercel-Protection diese Domain nicht schützt. Nicht wieder hinzufügen.
+- **loydl.ch** zeigt noch auf die WordPress-Site bei Hostpoint. Umstellung = Domain in Vercel eintragen + DNS bei Hostpoint ändern.
+- Framework Preset: Other, kein Build Command.
 
 ## Architecture & Page Structure
 
-Four main pages with shared navigation:
+Sieben Seiten mit gemeinsamer Navigation:
 
 1. **index.html** - Homepage with hero, services overview cards, and CTA buttons
 2. **services.html** - Detailed descriptions of all three service areas
 3. **ai-solutions.html** - Deep dive into fluxdeck.io platform
-4. **contact.html** - Contact form and company info
+4. **about.html** - Über mich (Profil Harald Loydl)
+5. **contact.html** - Contact form and company info
+6. **impressum.html** - Impressum (Schweizer Recht, UID CHE-110.533.965)
+7. **datenschutz.html** - Datenschutzerklärung (Vercel, Formspree)
 
 ### Navigation Pattern
 - Fixed top navigation bar (`fixed top-0 ... z-50`)
-- Responsive: Hidden mobile menu on small screens (`hidden md:flex`)
-- Active page indicated with `text-purple-600 font-semibold`
-- CTA button styled with `bg-purple-600`
+- Desktop-Links in `hidden md:flex`, Burger-Button `#menu-button` + `#mobile-menu` unter `md`, Inline-Script im `<nav>`
+- Der `<nav>`-Block ist auf allen 7 Seiten identisch, nur der aktive Link unterscheidet sich (`text-purple-600 font-semibold` + `aria-current="page"`). Änderungen an der Navigation immer in allen 7 Dateien.
+- Reihenfolge: Home · Services · AI Solutions · Über mich · Kontakt (CTA `bg-purple-600`)
+- Überschriften auf 375 px Breite prüfen: lange deutsche Wörter (`Unternehmensberatung`, `Datenschutzerklärung`) laufen bei `text-4xl` und größer über den Rand.
 
 ### Styling Conventions
 
@@ -76,16 +75,7 @@ Four main pages with shared navigation:
 
 ## Contact Form Configuration
 
-The contact form in [contact.html](contact.html) uses Formspree and requires a form ID:
-
-```html
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-```
-
-To update:
-1. Sign up at formspree.io
-2. Create new form
-3. Replace `YOUR_FORM_ID` in contact.html with actual ID
+The contact form in [contact.html](contact.html) uses Formspree, form ID `xwprrgjl`.
 
 ## Important Relationships
 
@@ -101,16 +91,16 @@ assets/
 └── videos/     # Optional video content (currently empty)
 ```
 
-Note: Asset directories are preserved via .gitignore but currently contain no files.
+Note: Asset directories are preserved via `.gitkeep` but currently contain no files.
 
 ## Outstanding TODOs
 
-From README.md:
-- Add real Formspree form ID to contact.html
-- Create impressum.html (legal notice - required for German sites)
-- Create datenschutz.html (privacy policy - GDPR requirement)
+Stand 25.11.2026:
 - Add company logo to assets/images/
 - Add favicon
+- `datenschutz.html` erwähnt `cdn.tailwindcss.com` nicht (IP-Übermittlung an Dritte)
+- Tailwind Play-CDN ist laut Tailwind nicht für Produktion gedacht (Konsolen-Warnung)
+- Livegang: Domain `loydl.ch` von Hostpoint/WordPress auf Vercel umstellen
 
 ## Development Notes
 
