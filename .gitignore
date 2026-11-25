@@ -39,3 +39,7 @@ yarn-error.log*
 .env.local
 .env.*.local
 .vercel
+
+# Tailwind-Build (wird von Vercel bei jedem Deployment erzeugt)
+node_modules/
+styles.css
