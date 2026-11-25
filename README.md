@@ -18,17 +18,17 @@ Corporate website showcasing three service areas:
 
 ## 🚀 Tech Stack
 
-- **Frontend:** Plain HTML5, TailwindCSS (via CDN)
+- **Frontend:** Plain HTML5, TailwindCSS 3.4.17 (CLI-Build → `styles.css`)
 - **JavaScript:** Vanilla JS (no framework)
 - **Deployment:** Vercel (same as fluxdeck.io)
 - **Forms:** Formspree (contact form)
 - **Hosting:** Static site hosting (no backend required)
 
 **Why this stack?**
-- ⚡ **Fast:** Zero build time, instant deployment
+- ⚡ **Fast:** Build unter 1 Sekunde
 - 🎨 **Modern:** TailwindCSS for responsive design
 - 💰 **Free:** Hosting on Vercel (no cost)
-- 🔧 **Simple:** No npm, webpack, or complex tooling
+- 🔧 **Simple:** Nur Tailwind als Abhängigkeit, kein Framework
 - 📱 **Mobile-first:** Responsive out of the box
 - 🔄 **Consistent:** Same platform as fluxdeck.io
 
@@ -79,10 +79,11 @@ loydl-website/
 git clone https://github.com/hloydl/loydl-website.git
 cd loydl-website
 
-# Open in browser (no build step!)
-open index.html
+# Styles erzeugen (einmalig npm install)
+npm install
+npm run build
 
-# Or use Python simple server
+# Lokaler Server
 python3 -m http.server 8000
 # Visit: http://localhost:8000
 ```
@@ -96,7 +97,7 @@ python3 -m http.server 8000
 4. Select `hloydl/loydl-website`
 5. Build settings:
    - Framework Preset: **Other**
-   - Build Command: (leave empty)
+   - Build Command: `npm run build` (automatisch), Output: `dist` (`vercel.json`)
    - Output Directory: `.` or (leave empty)
 6. Deploy!
 

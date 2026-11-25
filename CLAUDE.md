@@ -9,11 +9,11 @@ Corporate website for LOYDL Unternehmensberatung showcasing three service areas:
 - Business Process Automation (Camunda BPM, Workflow Automation)
 - AI Communication Solutions (fluxdeck.io KI-Telefonie Platform)
 
-**Key Characteristic**: Zero-build-step static site. No npm, webpack, or build tooling required.
+**Key Characteristic**: Statische Site. Einziger Build-Schritt: Tailwind erzeugt `styles.css` (`npm run build`).
 
 ## Tech Stack
 
-- **Frontend**: Plain HTML5 with TailwindCSS loaded via CDN (`https://cdn.tailwindcss.com`)
+- **Frontend**: Plain HTML5, TailwindCSS 3.4.17 als CLI-Build → `styles.css` (seit 25.11.2026, vorher Play-CDN)
 - **JavaScript**: Vanilla JS only (no framework, no bundler)
 - **Deployment**: Vercel (consistent with fluxdeck.io)
 - **Forms**: Formspree for contact form
@@ -21,16 +21,16 @@ Corporate website for LOYDL Unternehmensberatung showcasing three service areas:
 
 ## Local Development
 
-No build step needed. Simply open HTML files directly or use a local server:
-
 ```bash
-# Option 1: Open directly
-open index.html
-
-# Option 2: Python simple server (recommended for testing)
+npm install          # einmalig
+npm run build        # erzeugt styles.css (Root) und dist/ (für Vercel)
 python3 -m http.server 8000
 # Visit: http://localhost:8000
 ```
+
+- `styles.css`, `dist/` und `node_modules/` sind in `.gitignore`. Ohne `npm run build` haben die Seiten lokal kein Styling.
+- Nach jeder Änderung an Tailwind-Klassen `npm run build` erneut ausführen. Tailwind erzeugt nur Klassen, die in `./*.html` vorkommen (`tailwind.config.js`).
+- Klassen, die nur per JavaScript gesetzt werden, müssen auch irgendwo im HTML stehen, sonst fehlen sie in `styles.css`.
 
 ## Deployment
 
@@ -39,7 +39,7 @@ python3 -m http.server 8000
 - **Vorschau:** https://loydl-website-haraldloydlloydlchs-projects.vercel.app — nur mit Vercel-Login sichtbar (Deployment Protection).
 - **Kein öffentlicher `.vercel.app`-Alias:** `loydl-website.vercel.app` wurde am 25.11.2026 aus dem Projekt entfernt, weil die Vercel-Protection diese Domain nicht schützt. Nicht wieder hinzufügen.
 - **loydl.ch** zeigt noch auf die WordPress-Site bei Hostpoint. Umstellung = Domain in Vercel eintragen + DNS bei Hostpoint ändern.
-- Framework Preset: Other, kein Build Command.
+- Framework Preset: Other. Vercel führt `npm run build` aus und liefert `dist/` aus (`vercel.json` · `outputDirectory`).
 
 ## Architecture & Page Structure
 
@@ -71,7 +71,7 @@ Sieben Seiten mit gemeinsamer Navigation:
 - `.gradient-bg` - Purple gradient for hero sections
 - `.feature-card` - Service cards with hover transform effect
 
-**TailwindCSS via CDN**: All styles use Tailwind utility classes. No custom CSS files.
+**TailwindCSS**: All styles use Tailwind utility classes. Eigenes CSS nur in den `<style>`-Blöcken der Seiten (`.gradient-bg`, `.feature-card`).
 
 ## Contact Form Configuration
 
@@ -98,14 +98,12 @@ Note: Asset directories are preserved via `.gitkeep` but currently contain no fi
 Stand 25.11.2026:
 - Add company logo to assets/images/
 - Add favicon
-- `datenschutz.html` erwähnt `cdn.tailwindcss.com` nicht (IP-Übermittlung an Dritte)
-- Tailwind Play-CDN ist laut Tailwind nicht für Produktion gedacht (Konsolen-Warnung)
 - Livegang: Domain `loydl.ch` von Hostpoint/WordPress auf Vercel umstellen
 
 ## Development Notes
 
-- **No build process**: Edit HTML files directly, changes are immediate
-- **No package.json**: TailwindCSS loaded from CDN, no dependencies
+- **Build**: nur Tailwind (`package.json` · `build`), keine weiteren Abhängigkeiten
+- **Keine Drittanbieter-Ressourcen**: Seiten laden nichts von fremden Domains. Neue externe Scripts oder Fonts müssen in `datenschutz.html` genannt werden.
 - **No transpilation**: Use vanilla ES6 JavaScript that works in modern browsers
 - **Mobile-first**: All layouts use responsive Tailwind classes (sm:, md:, lg:)
 - **German language**: All content and UI text in German
