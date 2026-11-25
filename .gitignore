@@ -43,3 +43,4 @@ yarn-error.log*
 # Tailwind-Build (wird von Vercel bei jedem Deployment erzeugt)
 node_modules/
 styles.css
+dist/
