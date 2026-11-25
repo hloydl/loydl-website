@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edoras one GraphQL API | Blog-Archiv | LOYDL</title>
+    <meta name="description" content="Explore the possibilities of GraphQL for edoras one using a new GraphQL server atop the existing edoras REST API">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <article class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <p class="text-sm text-gray-500 mb-2" lang="de"><a href="/blog/" class="text-purple-600 hover:underline">Blog-Archiv</a> · 9. Februar 2017</p>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">edoras one GraphQL API</h1>
+            <p class="text-sm bg-gray-100 text-gray-600 rounded-lg px-4 py-3 mb-8" lang="de">Archivbeitrag aus dem früheren Blog auf loydl.ch. Der Inhalt entspricht dem Stand vom 9. Februar 2017.</p>
+            <div class="article">
+<p>Excerpt:<br>
+<strong>Explore the possibilities of <a href="http://graphql.org/" target="_blank" rel="noopener">GraphQL</a></strong> for <a href="http://www.edorasware.com" target="_blank" rel="noopener">edoras one</a> using a GraphQL server atop the existing edoras REST API</p>
+<p><em>(note: No edoras backend developers were harmed during development of this service)</em></p>
+<p><img src="/assets/blog/2017/02/graphql-atop-edoras-rest.png" alt="graphql-atop-edoras-rest" width="864" height="816" loading="lazy"></p>
+<p>More Details:</p>
+<p><img src="/assets/blog/2017/02/graphql-atop-edoras-rest-2.png" alt="graphql-atop-edoras-rest-2" width="1115" height="748" loading="lazy"></p>
+<hr>
+
+<p><b>Web/mobile </b><b>Apps or</b><b> </b><b>arbitrary </b><b>clients </b>use GraphQL to fetch data from edoras one</p>
+<p><b>GraphiQL:</b> in-browser IDE for exploring your data using GraphQL</p>
+<p><b>GraphQL Server<br>
+</b>&#8211; provides the edoras GraphQL API i.e. the edoras Type Definitions<br>
+&#8211; maps GraphQL queries/mutations to edoras REST calls</p>
+<p>We defined two queries &#8211; <strong>search</strong> and <strong>workItem</strong>:</p>
+<pre>type Query {
+
+    # find work items
+    search(
+
+      # filter work items by type (multiple types possible)
+      type: [WorkItemType],
+
+      # limit the search result (can be used for pagination)
+      limit: Int = 10,
+
+      # show results starting with this offset (can be used for pagination)
+      offset: Int = 0,
+
+      # sort the result by sort term, ascending or descending
+      # documentation: https://documentation.edorasware.com/latest#sort-terms
+      sort: [SortEnum],
+
+      # find work items as descendants of a given work item id
+      descendantsOf: String,
+
+      # filter work items by their state (multiple states possible)
+      state: [StateEnum],
+
+      # filter work items by dashboard (i.e role): user, modeler or admin
+      dashboard: Dashboard
+
+    ): [WorkItemInterface]
+
+    # ------------------------------------------
+
+    #find a specific work item by id or key (Either id or key must be given)
+    workItem(
+
+      # Unique id. Either id or key must be given
+      id: String,
+
+      # Unique key. Either id or key must be given
+      key: String,
+
+    ): WorkItemInterface
+}</pre>
+
+<p>If we add further Type Definitions we would get a concise schema for edoras and could run queries like so:</p>
+<blockquote><p>Example 1:<br>
+get all work items of type APP_MODEL in state OPEN sorted by descending modification date + limit the result to 30 entries:</p></blockquote>
+<p><img src="/assets/blog/2017/02/graphiql-search-1.png" alt="graphiql-search-1" width="1084" height="354" loading="lazy"></p>
+<p>This is a screenshot of the open source, interactive, in-browser IDE called <strong>GraphiQL</strong>.<br>
+In short, here is how this works:<br>
+If you change the query on the left side and press the above play-button you get the result on the right side.</p>
+<p>You immediately understand:</p>
+<ul>
+<li>The structure of the query determines the <strong>structure of the result</strong></li>
+<li>The result is exactly what you requested for, not more or less</li>
+</ul>
+<p>Now let&#8217;s dig a little bit deeper:</p>
+<p>Assume you want to show <strong>all models of a specific APP_MODEL</strong> and some other information down the data hierarchy, you start typing&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-21.png" alt="graphiql-search-2" width="621" height="328" loading="lazy"></p>
+<p>add &#8216;descendantsOf&#8217; and id. Add the fields to display&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-31.png" alt="graphiql-search-3" width="642" height="380" loading="lazy"></p>
+<p>and run the query&#8230;</p>
+<blockquote><p>Example 2: get all Work Items of an App Model:</p></blockquote>
+<p><img src="/assets/blog/2017/02/graphiql-search-4.png" alt="graphiql-search-4" width="1110" height="840" loading="lazy"></p>
+<p>nested data: <strong>owner</strong> with title, id, etc&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-5.png" alt="graphiql-search-5" width="640" height="305" loading="lazy"></p>
+<p>and query result:</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-6.png" alt="graphiql-search-6" width="1107" height="802" loading="lazy"></p>
+<p>Depending on the returned work item type&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-7.png" alt="graphiql-search-7" width="643" height="288" loading="lazy"></p>
+<p>&#8230;here: &#8230;on CaseModel&#8230; I want to return the initForm with key and name:</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-8.png" alt="graphiql-search-8" width="1102" height="835" loading="lazy"></p>
+<p>And now drill down on the fields for each form&#8230;.</p>
+<p><strong>fields</strong> returns an array of <strong>FormComponentInterface&#8230;</strong></p>
+<p><img src="/assets/blog/2017/02/graphiql-search-9.png" alt="graphiql-search-9" width="639" height="217" loading="lazy"></p>
+<p>show field description, type (xmlTag) and label&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-10.png" alt="graphiql-search-10" width="1388" height="805" loading="lazy"></p>
+<p>the form fields can be of different type&#8230;</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-11.png" alt="graphiql-search-11" width="641" height="360" loading="lazy"></p>
+<p>&#8230;what are the subforms of a MultiSubFormComponent:</p>
+<p><img src="/assets/blog/2017/02/graphiql-search-12.png" alt="graphiql-search-12" width="1401" height="791" loading="lazy"></p>
+<p>(you recognize that each subform in the MultiSubFormComponent is itself a FormModel)</p>
+<p>You probably realize the potential here&#8230;</p>
+<ul>
+<li>we fetch data over several levels in the data hierarchy and its still <strong>very comprehensive</strong></li>
+<li>and because of the <strong>Type System</strong> in the editor you get:
+<ul>
+<li><strong>Syntax highlighting</strong></li>
+<li><strong>Real-time error highlighting and reporting</strong></li>
+<li>intelligent <strong>type ahead</strong> of fields, arguments, types, and more</li>
+</ul>
+</li>
+</ul>
+<p>What do we cover with the edoras GraphQL API:</p>
+<ul>
+<li>fetch work items</li>
+<li>change / add work items (mutations)</li>
+<li>basically we can cover everything in the vis modeler,<br>
+i.e. everything what is exposed via the REST API</li>
+</ul>
+<p>What can you do with the edoras GraphQL API:</p>
+<ul>
+<li>get the freedom to build arbitrary web and mobile applications atop edoras server</li>
+</ul>
+<p>Coming next:</p>
+<p>edoras GUIs build with edoras GraphQL &#8211; stay tuned&#8230;</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

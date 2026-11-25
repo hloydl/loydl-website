@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaloq GraphQL Server | Blog-Archiv | LOYDL</title>
+    <meta name="description" content="[et_pb_section fb_built=”1″ _builder_version=”3.0.47″][et_pb_row _builder_version=”3.0.47″ background_size=”initial” background_position=”top_left” …">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <article class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <p class="text-sm text-gray-500 mb-2" lang="de"><a href="/blog/" class="text-purple-600 hover:underline">Blog-Archiv</a> · 3. November 2017</p>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">Avaloq GraphQL Server</h1>
+            <p class="text-sm bg-gray-100 text-gray-600 rounded-lg px-4 py-3 mb-8" lang="de">Archivbeitrag aus dem früheren Blog auf loydl.ch. Der Inhalt entspricht dem Stand vom 3. November 2017.</p>
+            <div class="article">
+<p>[et_pb_section fb_built=&#8221;1&#8243; _builder_version=&#8221;3.0.47&#8243;][et_pb_row _builder_version=&#8221;3.0.47&#8243; background_size=&#8221;initial&#8221; background_position=&#8221;top_left&#8221; background_repeat=&#8221;repeat&#8221;][et_pb_column type=&#8221;4_4&#8243; _builder_version=&#8221;3.0.47&#8243; parallax=&#8221;off&#8221; parallax_method=&#8221;on&#8221;][et_pb_text _builder_version=&#8221;3.0.47&#8243; background_size=&#8221;initial&#8221; background_position=&#8221;top_left&#8221; background_repeat=&#8221;repeat&#8221;]</p>
+<p>Intro</p>
+<p>9 month ago I posted the vision of <a href="/graphql/">GraphQL for Avaloq</a>. There I described how easy it would be to access all Avaloq data &#8211; transactional and positional &#8211; e.g. bookings, clients, contracts, portfolios, contacts, etc. &#8211; whatever is stored in the Avaloq database.</p>
+<p>Once you have defined and implemented your backend capabilities &#8211; the GraphQL Server &#8211; a clients GUI/View can mix and match data es they need it based on the GraphQL servers schema. No changes in the backend are necessary, if the clients needs different data. You get ONE endpoint for all clients: mobile, web, fat, other consumers/services. Clients basically fetch data with ONE roundtrip. Caching, batching and security is already included. Is that too good to be true?</p>
+<p>Here I describe a step closer to this vision with a first running system of this kind.</p>
+<p><em>If you’re just getting started with GraphQL, check out the <a href="https://www.howtographql.com/" target="_blank" rel="noopener">How to GraphQL</a> fullstack tutorial website for a holistic and in-depth learning experience.</em></p>
+<p>In the last couple of weeks I found some time to develop a prototype for this vision.</p>
+<p>The result is a proof-of-concept at a clients site &#8211; in this case the Bank CIC (Switzerland) AG. I would like to thank the managers and supporters at Bank CIC to let me access their Avaloq Dev DB and develop this prototype off-time.</p>
+<p>It was really a quick win to get the whole machinery up and running.</p>
+<p>Here I will give some descriptions and show some screenshots of live GraphQL queries using the Avaloq GraphQL Server (GraphiQL client).</p>
+<h2>What makes GraphQL special?</h2>
+<ol>
+<li>GraphQL lets you describe <strong>data requirements</strong> in a well-specified query language based on a schema, which exposes <strong>API capabilities</strong>.</li>
+<li><strong>Separation of concerns, not technologies</strong>. In GraphQL, the shape of the result is defined by the client, which is more natural. GraphQL decouples API provider from consumers. In endpoint-based API like REST, the shape of returned data is determined by the server. <em>GraphQL puts data requirements in the client where they belong.</em></li>
+<li>The clients query can be considered as a <strong>unit of data fetching</strong>. GraphQL knows all of the data requirements up front, enabling new types of server functionality. For example batching and caching underlying API calls within a single query becomes easy with GraphQL.</li>
+</ol>
+<p>There is a GraphQL client &#8211; called <a href="http://loydl-staging.ch:3001/graphiql" target="_blank" rel="noopener">GraphiQL</a>  &#8211; automatically available with the Avaloq GraphQL server.</p>
+<p>The following screenshots are taken from a live (anonymized) Avaloq instance. So they are no fake or mocked data.</p>
+<p>We are going to use this client like so:</p>
+<p>&#8211; Type in your query on the left side. Optionally use Ctrl-Space for code completion.</p>
+<p>&#8211; Hit the play-button.</p>
+<p>&#8211; The GraphQL server returns the result on the right side.</p>
+<h2>Business Partner</h2>
+<p>Let&#8217;s start very easy: Get me a Business Partner with id 777600, return the id only (which may not make sense &#8211; just for the sake of a first demo and simplicity):</p>
+<p><img src="/assets/blog/2017/11/capture_1.png" alt="Capture_" width="744" height="189" loading="lazy"></p>
+<p>Lets add names to the result &#8211; code completion while you type:</p>
+<p><img src="/assets/blog/2017/11/capture02_1.png" alt="Capture02_" width="758" height="404" loading="lazy"></p>
+<p><img src="/assets/blog/2017/11/capture03.png" alt="Capture03" width="762" height="251" loading="lazy"></p>
+<p>The Business Partner with more information like Business Unit (Tenant), internal name, name for sorting, etc.:</p>
+<p><img src="/assets/blog/2017/11/capture04.png" alt="Capture04" width="815" height="302" loading="lazy"></p>
+<p>You recognize that the result has the same structure as your query. The server only returns the data the client has requested.</p>
+<h2>Classes</h2>
+<p>What about the properties (key value pairs) of the Business Partner. In Avaloq called classes:</p>
+<p><img src="/assets/blog/2017/11/capture05.png" alt="Capture05" width="777" height="951" loading="lazy"></p>
+<p>Drill down into class names (e.g. property name and value names):</p>
+<p><img src="/assets/blog/2017/11/capture06.png" alt="Capture06" width="988" height="936" loading="lazy"></p>
+<p>Interested only in Property with ID 71 (Avaloq calls this a Classification):</p>
+<p><img src="/assets/blog/2017/11/capture07.png" alt="Capture07" width="878" height="460" loading="lazy"></p>
+<h2>BP &#8211; Person &#8211; Relations</h2>
+<p>A Business Partner (basically a contract with a bank client) has relations to real persons &#8211; here they are:</p>
+
+<p><img src="/assets/blog/2017/11/capture08.png" alt="Capture08" width="831" height="934" loading="lazy"></p>
+<p><em>(in the above example we retrieved PERSON_TYPE_ID and the NAME of the Person object)</em></p>
+<h2>Container</h2>
+<p>A Business Partner has containers , show the id of each:</p>
+<p><img src="/assets/blog/2017/11/capture09.png" alt="Capture09" width="809" height="486" loading="lazy"></p>
+<p>Show more info on each container: Reference Currency ID, Container Type ID and the positions of each Container (its POS_ID for now):</p>
+<p><img src="/assets/blog/2017/11/capture10.png" alt="Capture10" width="815" height="879" loading="lazy"></p>
+<h2>Positions</h2>
+<p>Start from scratch with one of the above Container as root query (and show all positions with information per position like: Amount, Asset ID, Curreny ID):</p>
+<p><img src="/assets/blog/2017/11/capture11.png" alt="Capture11" width="766" height="471" loading="lazy"></p>
+<h2>Bookings</h2>
+<p>Show bookings on positions:</p>
+<p><img src="/assets/blog/2017/11/capture12.png" alt="Capture12" width="852" height="949" loading="lazy"></p>
+<h2>Combined Queries</h2>
+<p>Combined queries: a Business Partner, a Container with its positions, a position with its bookings:</p>
+<p><img src="/assets/blog/2017/11/capture13.png" alt="Capture13" width="762" height="775" loading="lazy"></p>
+<p>Container and a position with amount and all bookings with quantity, date, balance, order behind this booking (DOC_ID):</p>
+<p><img src="/assets/blog/2017/11/capture16.png" alt="Capture16" width="913" height="945" loading="lazy"></p>
+<h2>Search Business Partner</h2>
+<p>List of Business Partners where the name is like &#8220;Bank%&#8221;:</p>
+<p><img src="/assets/blog/2017/11/capture14_.png" alt="Capture14_" width="1034" height="923" loading="lazy"></p>
+<h2>Orders (DOCs)</h2>
+<p>Details on a Order (doc):  order type, workflow status, last workflow action, timestamp etc.:</p>
+<p><img src="/assets/blog/2017/11/capture17.png" alt="Capture17" width="830" height="455" loading="lazy"></p>
+
+<p>We can continue on and on&#8230;</p>
+<p>The Avaloq GraphQL server can retrieve whatever data you need from the Avaloq Database.</p>
+<h2>Open Banking APIs with GraphQL</h2>
+<p>GraphQL could be just the right technology for Banks and Third Party Provider to implement Open Banking APIs.</p>
+
+<p>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section]</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

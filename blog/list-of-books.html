@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Books | Blog-Archiv | LOYDL</title>
+    <meta name="description" content="This is my selection of recommended or simply interesting books I read in the past. I will update this list from time to time. UML, BPMN, …">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <article class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <p class="text-sm text-gray-500 mb-2" lang="de"><a href="/blog/" class="text-purple-600 hover:underline">Blog-Archiv</a> · 18. Juli 2013</p>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">List of Books</h1>
+            <p class="text-sm bg-gray-100 text-gray-600 rounded-lg px-4 py-3 mb-8" lang="de">Archivbeitrag aus dem früheren Blog auf loydl.ch. Der Inhalt entspricht dem Stand vom 18. Juli 2013.</p>
+            <div class="article">
+<p>This is my selection of recommended or simply interesting books I read in the past.<br>
+I will update this list from time to time.</p>
+
+<h4>UML, BPMN, Software-Architecture</h4>
+<ol>
+<li>Domain-Driven Design: Tackling Complexity in the Heart of Software, Eric J. Evans, Addison Wesley, 2003</li>
+<li>Software-Architekturen dokumentieren und kommunizieren, Stefan Zörner, Hanser Verlag, 2012</li>
+<li>Model-Based Development: Applications, H.S. Lahman, Addison-Wesley 2011</li>
+<li>BPMN Method &amp; Style, 2nd Edition, Bruce Silver, Cody-Cassidy Press, 2011</li>
+<li>Moderne Softwarearchitektur, Umsichtig planen, robust bauen mit Quasar, J. Siedersleben, Verlag dpunkt, 2004</li>
+<li>Model Driven Architecture with Executable UML, C. Raistrick, P. Francis, J. Wright, I. Wilkie, Cambridge 2004</li>
+<li>MDA Distilled, Principles of Model-Driven Architecture, S. Mellor, K. Scott, A. Uhl, D. Weise, , Addison-Wesley 2004</li>
+<li>The MDA Journal, Straight from the Masters, D. S. Frankel &amp; John Parodi, Meghan-Kiffer Press 2004</li>
+<li>The Object Contraint Language Second Edition, Getting Your Models Ready For MDA, J. Warmer, A. Kleppe, , Addison-Wesley 2003</li>
+<li>Executable UML, How to build class models, Leon Starr, Prentice Hall, 2002</li>
+<li>Executable UML, A Foundation For Model-Driven Architecture, Stephen J. Mellor, Marc J. Balcer, Addison-Wesley 2002</li>
+<li>Testing Object-Oriented Systems. Models, Patterns, and Tools, Robert V. Binder, Addison-Wesley 2000</li>
+<li>Das UML-Handbuch, Grady Booch, Jim Rumbaugh, Ivar Jacobson, Addison-Wesley 1999</li>
+</ol>
+<h4>Start-Ups, Trends, etc.</h4>
+<ol>
+<li>The Innovative Investor&#8217;s Guide to Bitcoin and Beyond, Burniske, Chris. Cryptoassets, McGraw-Hill Education 2017.</li>
+<li>Machine Platform Crowd: Harnessing Our Digital Future,<br>
+Andrew (MIT) McAfee,‎ Erik (MIT) Brynjolfsson, 2017</li>
+<li>The Lean Startup &#8211; How Today&#8217;s Entrepreneurs use continuous innovation to create radically successful businesses, Chris Ries, Crown Publishing, 2011</li>
+<li>Der Weg zum erfolgreichen Unternehmer, Stefan Merath, Gabal 2010</li>
+<li>Planen, gründen, wachsen, McKinsey&amp;Company, Inc., 2000</li>
+</ol>
+<h4>General Management </h4>
+<ol>
+<li>The seven habits of highly effective people, Stephen R. Covey, Free Press 1989 / 2004</li>
+<li>Führen Leisten Leben &#8211; Wirksames Management für eine neue Zeit, Fredmund Malik, Deutsche Verlags-Anstalt 2000</li>
+<li>Management, Das A und O des Handwerks, aus der Reihe &#8220;Management: Komplexität meistern&#8221;, Fredmund Malik, Campus 2007</li>
+<li>Der Weg zum erfolgreichen Unternehmer, Stefan Merath, Gabal 2010</li>
+</ol>
+<h4>Requirements Engineering</h4>
+<ol>
+<li>Requirements-Engineering und Management.<br>
+Professionelle, iterative Anforderungsanalyse für die Praxis, chris Rupp &amp; die Sophisten, Hanser 2007</li>
+<li>Systemanalyse kompakt, SOPHIST GROUP / Chris Rupp, Elsevier Spektrum akademischer Verlag, 2004</li>
+</ol>
+<h4>Project Management</h4>
+<ol>
+<li>Project Management PMBOK Guide, PMI 2012</li>
+<li>Handbuch Projektmanagement, J. Kuster, E. Huber, R. Lippmann, A. Schmid, E. Schneider, U. Witschi, R. Wüst, Springer, 2011</li>
+</ol>
+<h4>Programming &amp; Databases</h4>
+<ol>
+<li>Troubleshooting Oracle Performance, C. Antognini, Apress 2008</li>
+<li>Extreme Programming, Kent Beck, Addison-Wesley 2000</li>
+<li>Java 2, Guido Krüger, Addison-Wesley 2001</li>
+</ol>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

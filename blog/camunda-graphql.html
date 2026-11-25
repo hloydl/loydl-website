@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camunda GraphQL | Blog-Archiv | LOYDL</title>
+    <meta name="description" content="A couple of weeks ago I started to discuss the idea of GraphQL for Camunda BPM. It all materialized quite fast in a public GitHub repo here: …">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <article class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <p class="text-sm text-gray-500 mb-2" lang="de"><a href="/blog/" class="text-purple-600 hover:underline">Blog-Archiv</a> · 9. März 2017</p>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">Camunda GraphQL</h1>
+            <p class="text-sm bg-gray-100 text-gray-600 rounded-lg px-4 py-3 mb-8" lang="de">Archivbeitrag aus dem früheren Blog auf loydl.ch. Der Inhalt entspricht dem Stand vom 9. März 2017.</p>
+            <div class="article">
+<p>A couple of weeks ago I started to <a href="https://forum.camunda.org/t/developing-the-camunda-graphql-extension" target="_blank" rel="noopener">discuss</a> the idea of GraphQL for Camunda BPM. It all materialized quite fast in a public GitHub repo here: <a href="https://github.com/Loydl/camunda-graphql" target="_blank" rel="noopener">camunda-graphql</a>.</p>
+<p>What is so fascinating about GraphQL?<br>
+Well, check out <a href="/2017/02/03/graphql/">GraphQL for Avaloq</a> where I describe the basics of GraphQL, example queries, the advantages of GraphQL over REST and other things.</p>
+<p>Work is in progress for Camunda GraphQL and so far it looks very promising. I also get excellent support from Camunda. Thanks guys.</p>
+<p>To exemplify the concepts of Camunda GraphQL I started coding:</p>
+<ul>
+<li>query resolvers for tasks and processes</li>
+<li>using arguments</li>
+<li>resolving complex types, started with <em>ProcessDefintion</em></li>
+<li>mutations, started with <em>setAssignee</em> for a task</li>
+</ul>
+<p>Because I wanted a deeper integration than in <a href="/2017/02/09/edoras-one-graphql-api/">edoras one GraphQL API</a> I choose to use the <a href="https://docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-api/" target="_blank" rel="noopener">Camunda Java API</a> directly. This makes it fast and we can access all Camunda functionality via GraphQL. How cool is that?</p>
+<p>So the whole project turned out to be a Java Springboot application &#8211; no full-stack-Javascript this time, sorry.</p>
+<p>Luckily we found the relative new <a href="https://github.com/Cox-Automotive/graphql-java-tools" target="_blank" rel="noopener">graphql-java-tools</a> repo which gave us the possibility to write the <a href="https://github.com/Loydl/camunda-graphql/tree/master/src/main/resources" target="_blank" rel="noopener">Camunda BPM Schema</a> (the <em>*.graphqls</em> files ) in <a href="http://graphql.org/learn/schema/" target="_blank" rel="noopener">GraphQL schema language plain text</a> instead of coding Schema definitions in Java as described in <a href="https://github.com/graphql-java/graphql-java#schema-definition" target="_blank" rel="noopener">graphql-java Schema definitions</a>. This makes it more readable and comprehensible.</p>
+<p>What makes the approach also light-weight is the fact, that we can use the Camunda Java API classes to fill in the GraphQL implementation. That means:</p>
+<blockquote><p>A Camunda GraphQL schema type, defined in a <em>*.graphqls</em> file, maps to a Camunda Java API class. The mapping is done by the <strong>name</strong> of the class/type.</p></blockquote>
+<p>That means (for almost all cases) we do not have to write our own arbitrary Java classes that represent GraphQL types. The Camunda API classes do that for us.</p>
+<p>I try to post updates here from time to time.</p>
+<p>Also, you can <a href="https://help.github.com/articles/watching-repositories/" target="_blank" rel="noopener">watch</a> our <a href="https://github.com/Loydl/camunda-graphql" target="_blank" rel="noopener">GitHub repo</a> 🙂</p>
+<p>Harald</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

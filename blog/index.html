@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog-Archiv | LOYDL Unternehmensberatung</title>
+    <meta name="description" content="Beiträge 2013–2018 über GraphQL, Avaloq, Camunda und Process Mining aus dem früheren Blog von LOYDL.">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Blog-Archiv</h1>
+            <p class="text-gray-600 mb-4">Beiträge aus dem früheren Blog auf loydl.ch, 2013–2018. Die Texte sind auf Englisch und entsprechen dem Stand ihres Erscheinungsdatums.</p>
+            <ul class="divide-y divide-gray-200">
+            <li class="py-6">
+                <p class="text-sm text-gray-500">16. Oktober 2018</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/install-run-the-pre-packaged-camunda-jboss-wildfly-11-distribution/" class="hover:text-purple-600">Install &amp; run the pre-packaged Camunda JBoss Wildfly 11 Distribution</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Installation Download the pre-packaged distribution for JBoss AS 7 from from https://camunda.org/release/camunda-bpm/wildfly11/7.9/ Unpack the distro …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">22. Februar 2018</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/how-to-secure-your-graphql-api/" class="hover:text-purple-600">How to secure your GraphQL API</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Great article from Max Stoiber, CTO of Spectrum, on how to secure your GraphQL API from malicious queries. Topics include: limit the incoming query …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">3. November 2017</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/avaloq-graphql-server-poc-live/" class="hover:text-purple-600">Avaloq GraphQL Server</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">[et_pb_section fb_built=”1″ _builder_version=”3.0.47″][et_pb_row _builder_version=”3.0.47″ background_size=”initial” background_position=”top_left” …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">23. September 2017</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/graphql-presentation-at-camunda-community-day-2017-berlin/" class="hover:text-purple-600">GraphQL presentation at Camunda Community Day 2017 Berlin – Award 2017</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">I gave a 25min presentation (slides) on the current status of the implementation of our Camunda GraphQL extension. We got really great feedback from …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">9. März 2017</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/camunda-graphql/" class="hover:text-purple-600">Camunda GraphQL</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">A couple of weeks ago I started to discuss the idea of GraphQL for Camunda BPM. It all materialized quite fast in a public GitHub repo here: …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">9. Februar 2017</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/edoras-one-graphql-api/" class="hover:text-purple-600">edoras one GraphQL API</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Explore the possibilities of GraphQL for edoras one using a new GraphQL server atop the existing edoras REST API</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">3. Februar 2017</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/graphql/" class="hover:text-purple-600">GraphQL for Avaloq</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">imagine having GraphQL for Avaloq…</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">31. Oktober 2013</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/cio-dialog-2013-switzerland/" class="hover:text-purple-600">CIO Dialog 2013 Switzerland</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Together with Lionel Pilorget from Basler Kantonalbank (BKB) I gave a speech on CIO Dialog 2013 (Switzerland) in Zurich, Okt. 28th. Topics included: …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">30. Oktober 2013</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/visualize-avaloq-workflows/" class="hover:text-purple-600">Visualize Avaloq workflows with Process Mining</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Visualize your Avaloq stex-, payment-, or whatever-you-like-workflow with one of the best Process Mining Tools – DISCO from Fluxicon. With three easy …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">18. Juli 2013</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/list-of-books/" class="hover:text-purple-600">List of Books</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">This is my selection of recommended or simply interesting books I read in the past. I will update this list from time to time. UML, BPMN, …</p>
+            </li>
+            <li class="py-6">
+                <p class="text-sm text-gray-500">8. Mai 2013</p>
+                <h2 class="text-xl font-bold text-gray-800 mt-1"><a href="/harald-j-loydl/" class="hover:text-purple-600">Profile Harald Loydl</a></h2>
+                <p class="text-gray-600 mt-2" lang="en">Dipl.-Ing. Harald Loydl Innovative Thinker, Entrepreneur, Coach, Developer, IT-Architect. Senior Consultant – Avaloq Banking System – Business Process …</p>
+            </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

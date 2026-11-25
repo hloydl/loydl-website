@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Archivbeiträge aus WordPress (blog/*.html) */
+@layer components {
+  .article { @apply text-gray-700 leading-relaxed break-words; }
+  .article > * + * { @apply mt-4; }
+  .article h2 { @apply text-2xl font-bold text-gray-800 mt-10; }
+  .article h3 { @apply text-xl font-bold text-gray-800 mt-8; }
+  .article h4 { @apply text-lg font-semibold text-gray-800 mt-6; }
+  .article a { @apply text-purple-600 underline hover:text-purple-800; }
+  .article ul { @apply list-disc pl-6 space-y-1; }
+  .article ol { @apply list-decimal pl-6 space-y-1; }
+  .article blockquote { @apply border-l-4 border-purple-200 pl-4 italic text-gray-600; }
+  .article pre { @apply bg-gray-900 text-gray-100 text-sm rounded-lg p-4 overflow-x-auto whitespace-pre; }
+  .article code { @apply font-mono text-sm; }
+  .article img { @apply max-w-full h-auto rounded border border-gray-200 inline-block my-2; }
+  .article hr { @apply my-8 border-gray-200; }
+  .article dl.gallery-item { @apply inline-block w-full sm:w-1/3 align-top p-1 mt-0; }
+  .article dd { @apply text-sm text-gray-500; }
+}

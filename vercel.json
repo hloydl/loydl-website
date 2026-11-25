@@ -1,3 +1,35 @@
 {
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/team",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/team/",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/contact/",
+      "destination": "/contact.html",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:slug(install-run-the-pre-packaged-camunda-jboss-wildfly-11-distribution|how-to-secure-your-graphql-api|avaloq-graphql-server-poc-live|graphql-presentation-at-camunda-community-day-2017-berlin|camunda-graphql|edoras-one-graphql-api|graphql|cio-dialog-2013-switzerland|visualize-avaloq-workflows|list-of-books|harald-j-loydl)",
+      "destination": "/blog/:slug.html"
+    },
+    {
+      "source": "/:slug(install-run-the-pre-packaged-camunda-jboss-wildfly-11-distribution|how-to-secure-your-graphql-api|avaloq-graphql-server-poc-live|graphql-presentation-at-camunda-community-day-2017-berlin|camunda-graphql|edoras-one-graphql-api|graphql|cio-dialog-2013-switzerland|visualize-avaloq-workflows|list-of-books|harald-j-loydl)/",
+      "destination": "/blog/:slug.html"
+    }
+  ]
 }

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL for Avaloq | Blog-Archiv | LOYDL</title>
+    <meta name="description" content="imagine having GraphQL for Avaloq…">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="/index.html" class="text-lg md:text-xl font-bold text-gray-800">LOYDL Unternehmensberatung</a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/index.html" class="text-gray-600 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="/services.html" class="text-gray-600 hover:text-purple-600 transition-colors">Services</a>
+                    <a href="/ai-solutions.html" class="text-gray-600 hover:text-purple-600 transition-colors">AI Solutions</a>
+                    <a href="/about.html" class="text-gray-600 hover:text-purple-600 transition-colors">Über mich</a>
+                    <a href="/contact.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+                </div>
+                <button id="menu-button" type="button" class="md:hidden p-2 -mr-2 text-gray-700 hover:text-purple-600" aria-label="Menü öffnen" aria-controls="mobile-menu" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 mt-4">
+                <a href="/index.html" class="block py-3 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="/services.html" class="block py-3 text-gray-700 hover:text-purple-600">Services</a>
+                <a href="/ai-solutions.html" class="block py-3 text-gray-700 hover:text-purple-600">AI Solutions</a>
+                <a href="/about.html" class="block py-3 text-gray-700 hover:text-purple-600">Über mich</a>
+                <a href="/contact.html" class="block mt-2 mb-3 text-center bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">Kontakt</a>
+            </div>
+        </div>
+        <script>
+            (function () {
+                var button = document.getElementById('menu-button');
+                var menu = document.getElementById('mobile-menu');
+                button.addEventListener('click', function () {
+                    var open = menu.classList.toggle('hidden') === false;
+                    button.setAttribute('aria-expanded', open);
+                    button.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+                    document.getElementById('menu-icon-open').classList.toggle('hidden', open);
+                    document.getElementById('menu-icon-close').classList.toggle('hidden', !open);
+                });
+            })();
+        </script>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-28 pb-16">
+        <article class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10">
+            <p class="text-sm text-gray-500 mb-2" lang="de"><a href="/blog/" class="text-purple-600 hover:underline">Blog-Archiv</a> · 3. Februar 2017</p>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">GraphQL for Avaloq</h1>
+            <p class="text-sm bg-gray-100 text-gray-600 rounded-lg px-4 py-3 mb-8" lang="de">Archivbeitrag aus dem früheren Blog auf loydl.ch. Der Inhalt entspricht dem Stand vom 3. Februar 2017.</p>
+            <div class="article">
+<p>Wouldn&#8217;t it be nice to have a super <strong>simple data query language</strong> for your Avaloq data?</p>
+<p>I mean really simple like so:</p>
+<pre>{
+  businessPartner(id: 2711) {
+    id
+    name
+    type
+  }
+}</pre>
+<p>which returns:</p>
+<pre>{
+  "id": 2711
+  "name": "ACME AG"
+  "type": "customer"
+}</pre>
+<p>You immediately understand:</p>
+<ul>
+<li>The structure of the query determines the <strong>structure of the result</strong></li>
+<li>The result is exactly what you requested for, not more or less</li>
+<li>and of course: the result is JSON</li>
+</ul>
+<p><strong>This is the <a href="http://graphql.org/" target="_blank" rel="noopener">GraphQL</a> query language!</strong></p>
+<p>And because GraphQL is based on a <strong><a href="http://facebook.github.io/graphql/#sec-Type-System" target="_blank" rel="noopener">Type System</a> (or &#8220;Schema&#8221;)</strong> organized in terms of types and fields, not endpoints, we can access the full capabilities of Avaloq&#8217;s famous objects in a more natural way. Objects like <strong>Person, Address, BusinessPartner, Container, Position,</strong> etc.  including their <strong>extensions</strong> (classes, keys, additions) and object <strong>relations.</strong></p>
+<ul>
+<li>you could write really powerful yet simple queries, like so:</li>
+</ul>
+<pre>{
+  person(id: 9999) {
+    address(type: POSTAL) {
+      street
+      city
+      country
+    }
+    contracts {
+      name
+      type
+    }
+    portfolios {
+      positions {
+        name
+        qty
+      }
+    }
+  }
+}</pre>
+<p>I let you imagine the result.</p>
+<p>I also let you imagine writing this query in <strong>SQL</strong> or <strong>Avaloq Script</strong>&#8230;</p>
+<p>Again, you get the point:</p>
+<ul>
+<li>we fetch data over several levels in the data hierarchy and its still <strong>very comprehensive</strong></li>
+<li>and because of the <strong>Type System</strong> in the editor you get:
+<ul>
+<li><strong>Syntax highlighting</strong></li>
+<li><strong>Real-time error highlighting and reporting</strong></li>
+<li>intelligent <strong>type ahead</strong> of fields, arguments, types, and more</li>
+</ul>
+</li>
+</ul>
+<p>Take a look at <a href="https://github.com/graphql/graphiql" target="_blank" rel="noopener">GraphiQL</a> &#8211; an in Browser IDE for GraphQL &#8211; it will blow you away.<br>
+(I will put together an online demo with mocked Avaloq data to show how to access Avaloq kernel objects, docs, extensions (classes, keys, additions), &#8230;)</p>
+<p>What else do we have&#8230;</p>
+<p>GraphQL offers architects a flexible and powerful way to let clients query your APIs &#8211; a real <strong>alternative to REST</strong> endpoints.</p>
+<p>Developers can build and change GUIs, which use the GraphQL query language to fetch exactly the data needed for that particular component.</p>
+<p>Given a more or less complete Type Schema for Avaloq in the backend, the GUI developer does not have to even bother the backend developers. <strong>Because the mix and match of the data on the GUI is the job of the GUI developer using GraphQL and not the job of the backend developers</strong>.</p>
+<p>Security is implemented just like you would do it with your REST API.<br>
+Actually GraphQL does not say anything about security.<br>
+It is also agnostic regarding the transfer protocol, but implementations basically use HTTP(S).</p>
+<p>The backend exposes it capabilities through the Type System (Schema).<br>
+The client can get the whole Schema through introspection of the Server.</p>
+<p><strong>Especially mobile apps could get a real performance boost</strong> &#8211; because you fetch exactly the data you need and omit several round trips which are often the case with REST APIs.</p>
+<p>Business analysts, developers or tool integrators &#8211; all can run against the same GraphQL server endpoint &#8211; via mobile application, Browser or any other tool or component.</p>
+<p>In this presentation I explore GraphQL and suggest the integration with Avaloq:<br>
+<a title="avaloq-graphql-2017-v1-31" href="/assets/blog/2017/02/avaloq-graphql-2017-v1-31.pptx">Avaloq-Graphql-2017</a> (V1.31)</p>
+<p>See also:</p>
+<blockquote><p><a href="/avaloq-graphql-server-poc-live/">Avaloq GraphQL Server</a></p></blockquote>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">LOYDL Unternehmensberatung</h3>
+                    <p class="text-sm">
+                        Harald Loydl<br>
+                        Geschäftsführer
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Services</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="/services.html#consulting" class="hover:text-white">IT Consulting & Training</a></li>
+                        <li><a href="/services.html#automation" class="hover:text-white">Business Process Automation</a></li>
+                        <li><a href="/ai-solutions.html" class="hover:text-white">AI Agent Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">Projekte</h3>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="https://www.fluxdeck.io" target="_blank" class="hover:text-white">fluxdeck.io - KI Voice Assistants</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 text-center text-sm">
+                <p>&copy; 2026 LOYDL Unternehmensberatung. Alle Rechte vorbehalten.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="/index.html" class="hover:text-white">Startseite</a>
+                    <a href="/blog/" class="hover:text-white">Blog-Archiv</a>
+                    <a href="/impressum.html" class="hover:text-white">Impressum</a>
+                    <a href="/datenschutz.html" class="hover:text-white">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
