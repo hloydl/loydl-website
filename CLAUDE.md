@@ -53,6 +53,14 @@ Sieben Seiten mit gemeinsamer Navigation:
 6. **impressum.html** - Impressum (Schweizer Recht, UID CHE-110.533.965)
 7. **datenschutz.html** - Datenschutzerklärung (Vercel, Formspree)
 
+### Blog-Archiv (`blog/`)
+- 11 Beiträge 2013–2018 aus dem früheren WordPress-Blog auf loydl.ch, übernommen am 25.11.2026.
+- `blog/<slug>.html` und `blog/index.html` werden von `archive/wordpress/convert.py` aus `archive/wordpress/posts.json` erzeugt. Nicht von Hand bearbeiten, sondern Script anpassen und neu ausführen: `python3 archive/wordpress/convert.py`.
+- Navigation und Footer der Blog-Seiten kopiert das Script aus `impressum.html` (mit absoluten Pfaden). Nach Änderungen an Navigation oder Footer das Script erneut ausführen.
+- Bilder und Dateien der Beiträge liegen in `assets/blog/<jahr>/<monat>/`. `--download` lädt sie von loydl.ch nach; das geht nur, solange WordPress dort erreichbar ist.
+- Alte WordPress-Adressen (`/graphql/` usw.) zeigen per Rewrite in `vercel.json` auf `blog/<slug>.html`. `/team/` und `/contact/` leiten auf `about.html` bzw. `contact.html` um.
+- `archive/` wird nicht veröffentlicht (`package.json` · `build` kopiert nur `*.html`, `styles.css`, `blog/`, `assets/`).
+
 ### Navigation Pattern
 - Fixed top navigation bar (`fixed top-0 ... z-50`)
 - Desktop-Links in `hidden md:flex`, Burger-Button `#menu-button` + `#mobile-menu` unter `md`, Inline-Script im `<nav>`

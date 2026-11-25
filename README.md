@@ -45,6 +45,8 @@ loydl-website/
 ├── contact.html            # Contact form & info
 ├── impressum.html          # Impressum
 ├── datenschutz.html        # Datenschutzerklärung
+├── blog/                   # Blog-Archiv (11 Beiträge aus WordPress, generiert)
+├── archive/wordpress/      # WordPress-Export + Konverter (nicht veröffentlicht)
 ├── assets/
 │   ├── images/            # Logos, photos, graphics
 │   └── videos/            # Optional video content
